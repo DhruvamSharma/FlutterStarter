@@ -16,4 +16,4 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 
-<img src = "https://github.com/DhruvamSharma/FlutterCodelab1/blob/master/WhatsApp%20Image%202018-12-15%20at%205.32.40%20PM.jpeg">
+<img src = "https://github.com/DhruvamSharma/FlutterCodelab1/blob/master/WhatsApp%20Image%202018-12-15%20at%205.32.40%20PM.jpeg" height = "300" width = "200">
