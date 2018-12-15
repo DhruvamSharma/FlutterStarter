@@ -15,5 +15,6 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.io/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
 
+**Image Samples:**
 
-<img src = "https://github.com/DhruvamSharma/FlutterCodelab1/blob/master/WhatsApp%20Image%202018-12-15%20at%205.32.40%20PM.jpeg" height = "300" width = "200">
+<img src = "https://github.com/DhruvamSharma/FlutterCodelab1/blob/master/WhatsApp%20Image%202018-12-15%20at%205.32.40%20PM.jpeg" height = "400" width = "250">
