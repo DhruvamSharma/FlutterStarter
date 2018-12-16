@@ -1,16 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+  print("myData");
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Welcome to Flutter',
-      home: RandomWords(),
+      home: HelloRectangle(),
     );
   }
+}
+
+
+class HelloRectangle extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+
+    final _container = Container(
+      color: Colors.cyan,
+      margin: EdgeInsets.all(16.0),
+      child: Center(
+        child: Column(
+          children : <Widget>[
+            Text("Hello"),
+            Text("Bye"),
+          ],
+        ),
+      ),
+
+    );
+
+    return Scaffold (
+      appBar: AppBar(
+        title: Text("Title"),
+        backgroundColor: Colors.amber,
+      ),
+      body : Center(
+        child: _container,
+      )
+    );
+
+  }
+
 }
 
 
