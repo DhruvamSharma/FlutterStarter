@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
+import 'package:flutter_app/Category.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -12,10 +14,11 @@ class MyApp extends StatelessWidget {
     // TODO: implement build
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        title: "MyFlutterDebut",
         home: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.cyan,
-            title: Text("hello Rectangle"),
+            title: Text("Unit Converter"),
           ),
           body: RandomWords(),
         ));
@@ -62,10 +65,9 @@ class RandomWordState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair) {
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-      ),
+    return CategoryWidget(name : pair.asPascalCase,
+        color: Colors.amber,
+        iconLocation: Icons.print
     );
   }
 }
