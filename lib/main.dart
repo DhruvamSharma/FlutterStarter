@@ -2,58 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
 void main() {
-  runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.cyan,
-          title: Text("hello Rectangle"),
-        ),
-        body: bodyWidget(),
-      )));
+  runApp(MyApp());
 }
 
-Widget bodyWidget() {
-  return Center(
-    child: Container(
-      color: Colors.pink,
-      width: 300,
-      height: 300,
-      child: Center(
-        child: Text(
-          "MyText",
-          style: TextStyle(fontSize: 32),
-        ),
-      ),
-    ),
-  );
-}
+class MyApp extends StatelessWidget {
 
-class HelloRectangle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _container = Container(
-      color: Colors.cyan,
-      margin: EdgeInsets.all(16.0),
-      child: Center(
-        child: Column(
-          children: <Widget>[
-            Text("Hello"),
-            Text("Bye"),
-          ],
-        ),
-      ),
-    );
-
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Title"),
-          backgroundColor: Colors.amber,
-        ),
-        body: Center(
-          child: _container,
+    // TODO: implement build
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.cyan,
+            title: Text("hello Rectangle"),
+          ),
+          body: RandomWords(),
         ));
   }
+
 }
 
 class RandomWords extends StatefulWidget {
