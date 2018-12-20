@@ -26,6 +26,7 @@ class CategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Material(
+      color: Colors.transparent,
       child: InkWell(
           splashColor: color,
           highlightColor: color,
@@ -58,7 +59,6 @@ Widget _rowWidget(String name, IconData iconLocation) {
         ),
         Text(name,
           style: TextStyle(fontSize: 24.0,
-            fontStyle: FontStyle.italic,
             decorationStyle: TextDecorationStyle.dashed,
           ),
           textAlign: TextAlign.center,
