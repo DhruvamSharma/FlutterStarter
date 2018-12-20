@@ -15,10 +15,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "MyFlutterDebut",
+        color: Colors.cyan,
         home: Scaffold(
+          backgroundColor: Colors.cyan,
           appBar: AppBar(
             backgroundColor: Colors.cyan,
-            title: Text("Unit Converter"),
+            centerTitle: true,
+            title: Text("Unit Converter",
+            style: Theme.of(context).textTheme.headline,
+            ),
+            elevation: 0.0,
           ),
           body: RandomWords(),
         ));
@@ -40,17 +46,13 @@ class RandomWordState extends State<RandomWords> {
     // returns a word pair for the list
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("MyTitle"),
-        backgroundColor: Colors.amber,
-      ),
+      backgroundColor: Colors.cyan,
       body: _buildSuggestions(),
     );
   }
 
   Widget _buildSuggestions() {
     return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
         itemBuilder: (context, i) {
           if (i.isOdd) return Divider();
 
