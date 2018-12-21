@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.cyan,
             centerTitle: true,
             title: Text("Unit Converter",
-            style: Theme.of(context).textTheme.headline,
+            style: TextStyle(
+              color : Colors.white,
+              fontSize: 24.0,),
             ),
             elevation: 0.0,
           ),
