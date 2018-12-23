@@ -23,3 +23,7 @@ samples, guidance on mobile development, and a full API reference.
 ### Draft 2
 
 <img src="https://github.com/DhruvamSharma/FlutterStarter/blob/master/udacity_flutter_course/Screenshot_1545561468.png" height = "300" width = "200">
+
+### Draft 3 (With a navigator)
+
+<img src="https://github.com/DhruvamSharma/FlutterStarter/blob/master/udacity_flutter_course/Screenshot_1545564935.png" height = "300" width = "200">
