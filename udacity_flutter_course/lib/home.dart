@@ -1,4 +1,12 @@
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// To keep your imports tidy, follow the ordering guidelines at
+// https://www.dartlang.org/guides/language/effective-dart/style#ordering
 import 'package:flutter/material.dart';
+// @required is defined in the meta.dart package
+import 'package:meta/meta.dart';
 import 'package:udacity_flutter_course/category.dart';
 
 class MyHomeScreen extends StatelessWidget {

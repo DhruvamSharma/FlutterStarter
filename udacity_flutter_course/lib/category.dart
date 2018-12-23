@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 // @required is defined in the meta.dart package
 import 'package:meta/meta.dart';
+import 'package:udacity_flutter_course/converter.dart';
 
 // We use an underscore to indicate that these variables are private.
 // See https://www.dartlang.org/guides/language/effective-dart/design#libraries
@@ -53,13 +54,13 @@ class Category extends StatelessWidget {
       child: Container(
         height: _rowHeight,
         child: InkWell(
-          borderRadius: _borderRadius,
           highlightColor: color,
           splashColor: color,
           // We can use either the () => function() or the () { function(); }
           // syntax.
           onTap: () {
             print('I was tapped!');
+            _navigateToConverterRoute(context);
           },
           child: Padding(
             padding: EdgeInsets.all(8.0),
@@ -91,4 +92,20 @@ class Category extends StatelessWidget {
       ),
     );
   }
+
+  void _navigateToConverterRoute(BuildContext context) {
+
+    if(Navigator.of(context).canPop())
+      {
+        Navigator.of(context).pop();
+      }
+      
+      Navigator.of(context).push(MaterialPageRoute<Null>(
+          builder: (BuildContext context) {
+            return UnitConverterScreen(color: color, title : name );
+          }
+        ));
+
+  }
 }
+

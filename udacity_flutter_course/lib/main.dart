@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:udacity_flutter_course/MyHomeScreen.dart';
+import 'package:udacity_flutter_course/home.dart';
 
 void main() => runApp(MyApp());
 
