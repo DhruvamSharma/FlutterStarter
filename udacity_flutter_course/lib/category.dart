@@ -50,12 +50,12 @@ class Category extends StatelessWidget {
   // See https://docs.flutter.io/flutter/material/Theme-class.html
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
+      color: color,
       child: Container(
         height: _rowHeight,
         child: InkWell(
           highlightColor: color,
-          splashColor: color,
+          splashColor: Colors.pink.shade900,
           // We can use either the () => function() or the () { function(); }
           // syntax.
           onTap: () {

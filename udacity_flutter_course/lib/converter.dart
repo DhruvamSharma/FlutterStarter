@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:udacity_flutter_course/single_converter.dart';
 
 class UnitConverterScreen extends StatefulWidget {
 
@@ -47,6 +48,7 @@ class UnitConverterScreenState extends State<UnitConverterScreen> {
         title: Text(title),
         backgroundColor: color,
       ),
+      body: ConverterWidget(),
     );
   }
 }

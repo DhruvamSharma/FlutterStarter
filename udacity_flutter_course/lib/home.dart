@@ -11,6 +11,13 @@ import 'package:udacity_flutter_course/category.dart';
 
 class MyHomeScreen extends StatefulWidget {
 
+  final swatch = const ColorSwatch(
+      0x33579186, {
+    10 : Color(0x33579186),
+    20 : Color(0x33579186),
+  }
+  );
+
   final String title;
 
   static const _categoryNames = <String>[
@@ -57,6 +64,8 @@ class MyHomeScreen extends StatefulWidget {
 
 
 
+
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -76,7 +85,7 @@ class _HomeScreenState extends State<MyHomeScreen> {
      @required this.iconsData,
      @required this.categoryNames,
      @required this.baseColors,
-    @required this.title,
+     @required this.title,
 }): assert(title != null);
 
   @override
@@ -107,7 +116,7 @@ class _HomeScreenState extends State<MyHomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.cyan,
         textTheme: TextTheme(headline: TextStyle(fontSize: 24)),
       ),
       body: _buildListWidget(categories),
