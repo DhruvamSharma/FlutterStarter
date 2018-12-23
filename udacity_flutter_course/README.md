@@ -15,4 +15,11 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.io/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
 
+### Darft 1
+
 <img src="https://github.com/DhruvamSharma/FlutterStarter/blob/master/udacity_flutter_course/Screenshot_1545556345.png" height = "300" width = "200">
+
+
+### Draft 2
+
+<img src="https://github.com/DhruvamSharma/FlutterStarter/blob/master/udacity_flutter_course/Screenshot_1545561468.png" height = "300" width = "200">
