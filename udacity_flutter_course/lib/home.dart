@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:udacity_flutter_course/category.dart';
 
-class MyHomeScreen extends StatelessWidget {
+class MyHomeScreen extends StatefulWidget {
 
   final String title;
 
@@ -55,32 +55,56 @@ class MyHomeScreen extends StatelessWidget {
   }) :  assert (title != null),
         super (key: key);
 
+
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _HomeScreenState(title: title, categoryNames: _categoryNames, baseColors: _baseColors, iconsData: _iconsData);
+  }
+
+}
+
+class _HomeScreenState extends State<MyHomeScreen> {
+
+  String title;
+  List categoryNames;
+  List baseColors;
+  List iconsData;
+
+   _HomeScreenState({
+     @required this.iconsData,
+     @required this.categoryNames,
+     @required this.baseColors,
+    @required this.title,
+}): assert(title != null);
+
   @override
   Widget build(BuildContext context) {
 
     final categories = <Category>[];
 
-    for (var i = 0; i < _categoryNames.length; i++) {
+    for (var i = 0; i < categoryNames.length; i++) {
       categories.add(Category(
-        name: _categoryNames[i],
-        color: _baseColors[i],
-        iconLocation: _iconsData[i],
+        name: categoryNames[i],
+        color: baseColors[i],
+        iconLocation: iconsData[i],
       ));
     }
 
 
-  /// This widget helps in building the list
-  Widget _buildListWidget(List<Category> categories) {
-    return Container(
-      child: ListView.builder(
+    /// This widget helps in building the list
+    Widget _buildListWidget(List<Category> categories) {
+      return Container(
+        child: ListView.builder(
           itemBuilder: ( context, i) => categories[i],
           padding: EdgeInsets.all(16.0),
-        itemCount: categories.length,
-      ),
-    );
-  }
+          itemCount: categories.length,
+        ),
+      );
+    }
 
-  return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text(title),
         backgroundColor: Colors.amber,
@@ -89,5 +113,7 @@ class MyHomeScreen extends StatelessWidget {
       body: _buildListWidget(categories),
     );
   }
+
+
 
 }
