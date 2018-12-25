@@ -22,17 +22,17 @@ class UnitConverterScreen extends StatefulWidget {
   State<StatefulWidget> createState() {
 
     // TODO: implement createState
-    return UnitConverterScreenState(color: color, title: title);
+    return _UnitConverterScreenState(color: color, title: title);
   }
 
 }
 
-class UnitConverterScreenState extends State<UnitConverterScreen> {
+class _UnitConverterScreenState extends State<UnitConverterScreen> {
 
   Color color;
   String title;
 
-  UnitConverterScreenState({
+  _UnitConverterScreenState({
     @required this.color,
     @required this.title
 
@@ -48,7 +48,15 @@ class UnitConverterScreenState extends State<UnitConverterScreen> {
         title: Text(title),
         backgroundColor: color,
       ),
-      body: ConverterWidget(),
+      body: Column(
+        children: <Widget>[
+          ConverterWidget(),
+          Icon(Icons.compare_arrows,
+            color: color,
+          ),
+          ConverterWidget()
+        ],
+      ),
     );
   }
 }
