@@ -10,18 +10,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "StartupRunner",
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          elevation: 0,
-          title: Text("Startup Namer",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 24, color: Colors.white),
-          ),
-        ),
-        body: ListWidget(),
-      ),
+      theme: ThemeData.dark(),
+      home: ListWidget(),
     );
   }
+
 
 }
