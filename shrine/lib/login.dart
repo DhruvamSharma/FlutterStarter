@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shrine/gallery.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -125,6 +126,16 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   login() {
-    Navigator.pop(context);
+
+    if(Navigator.of(context).canPop())
+      Navigator.pop(context);
+
+    Navigator.of(context).push(MaterialPageRoute<void>(
+        builder: (context) {
+          return GalleryScreen();
+        },
+      )
+    );
+
   }
 }
