@@ -19,3 +19,6 @@ samples, guidance on mobile development, and a full API reference.
 
 ### MDC 01
 <img src="https://github.com/DhruvamSharma/FlutterStarter/blob/master/shrine/mdc01.png" height= "400" width= "250">
+
+### MDC 02
+<img src="https://github.com/DhruvamSharma/FlutterStarter/blob/master/shrine/mdc02.png" height= "400" width= "250">
