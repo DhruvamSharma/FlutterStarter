@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shrine/backdrop.dart';
+import 'package:shrine/category_menu_page.dart';
+import 'package:shrine/colors.dart';
 import 'package:shrine/product.dart';
 import 'package:shrine/products_repository.dart';
 
@@ -10,30 +13,50 @@ class GalleryScreen extends StatefulWidget {
 }
 
 class GalleryScreenState extends State<GalleryScreen> {
+
+  Category _currentCategory = Category.all;
+
+  void _onCategoryTap(Category category) {
+    setState(() {
+      _currentCategory = category;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      appBar: _GalleryAppBar(),
-      body: galleryWidget(),
+    return Backdrop(
+
+      category: _currentCategory,
+      // TODO: Pass _currentCategory for frontLayer (104)
+      frontLayer: galleryWidget(category: _currentCategory),
+      // TODO: Change backLayer field value to CategoryMenuPage (104)
+      backLayer: CategoryMenuPage(
+        currentCategory: _currentCategory,
+        onCategoryTap: _onCategoryTap,
+      ),
+      frontTitle: Text('SHRINE'),
+      backTitle: Text('MENU'),
     );
   }
 
 
 
-  galleryWidget() {
+  galleryWidget({Category category}) {
     return GridView.count(
       crossAxisCount: 2,
       childAspectRatio: 8/9,
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(32.0),
       children: _generateShoppingCards(10),
     );
   }
 
 
+
+
   List<Card> _generateShoppingCards(int count) {
 
-    List<Product> products = ProductsRepository.loadProducts(Category.all);
+    List<Product> products = ProductsRepository.loadProducts(_currentCategory);
 
     if (products == null || products.isEmpty) {
       return const <Card>[];
@@ -92,44 +115,3 @@ class GalleryScreenState extends State<GalleryScreen> {
 }
 
 
-class _GalleryAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const _GalleryAppBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      brightness: Brightness.light,
-      title: Text(
-        "SHRINE",
-        semanticsLabel: "Application Name",
-      ),
-      centerTitle: true,
-      elevation: 0,
-      leading: IconButton(
-        icon: Icon(
-          Icons.menu,
-          semanticLabel: "Menu icon",
-        ),
-        onPressed: () {},
-      ),
-      actions: <Widget>[
-        IconButton(
-            icon: Icon(
-              Icons.search,
-              semanticLabel: "Search icon",
-            ),
-            onPressed: () {}),
-        IconButton(
-            icon: Icon(
-              Icons.shopping_cart,
-              semanticLabel: "Shopping Cart icon",
-            ),
-            onPressed: () {}),
-      ],
-    );
-  }
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => AppBar().preferredSize;
-}
