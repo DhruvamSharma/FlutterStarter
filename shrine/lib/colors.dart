@@ -53,7 +53,6 @@ TextTheme _buildShrineTextTheme(TextTheme base) {
       fontSize: 14.0,
     ),
   ).apply(
-    fontFamily: 'RobotoMono',
     displayColor: kShrineBrown900,
     bodyColor: kShrineBrown900,
   );
