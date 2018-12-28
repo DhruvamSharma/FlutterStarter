@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shrine/colors.dart';
+import 'package:shrine/cut_corners_border.dart';
+import 'package:shrine/gallery.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -76,11 +79,19 @@ class LoginScreenState extends State<LoginScreen> {
           FlatButton(onPressed: () {
             finishApp();
           },
-              child: Text("Cancel")),
+              child: Text("Cancel"),
+            shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(7))
+            ),
+          ),
           RaisedButton(onPressed: () {
             login();
           },
             child: Text("Login"),
+            shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(7))
+            ),
+            elevation: 8,
           ),
         ],
       ),
@@ -92,28 +103,31 @@ class LoginScreenState extends State<LoginScreen> {
   Widget _fields() {
     return Column(
       children: <Widget>[
-        TextField(
-          controller: _userNameController,
-          decoration: InputDecoration(
-            filled: true,
-            labelText: 'Username',
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32)),
+        AccentColorOverride(
+          color: kShrineBrown900,
+          child: TextField(
+            controller: _userNameController,
+            decoration: InputDecoration(
+              labelText: 'Username',
+              border: CutCornersBorder(
+
+              )
+            ),
           ),
         ),
         // spacer
         SizedBox(height: 12.0),
         // [Password]
-        TextField(
-          controller: _passwordController,
-          decoration: InputDecoration(
-            filled: true,
-            labelText: 'Password',
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(32)
-            )
+        AccentColorOverride(
+          color: const Color(0xFF442B2D),
+          child: TextField(
+            controller: _passwordController,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              border: CutCornersBorder(),
+            ),
+            obscureText: true,
           ),
-          obscureText: true,
         ),
       ],
     );
@@ -125,6 +139,35 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   login() {
-    Navigator.pop(context);
+
+    if(Navigator.of(context).canPop())
+      Navigator.of(context).pop();
+
+    Navigator.of(context).push(MaterialPageRoute<void>(
+        builder: (context) {
+          return GalleryScreen();
+        },
+      )
+    );
+
+  }
+}
+
+
+class AccentColorOverride extends StatelessWidget {
+  const AccentColorOverride({Key key, this.color, this.child})
+      : super(key: key);
+
+  final Color color;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      child: child,
+      data: Theme.of(context).copyWith(
+          accentColor: color,
+          brightness: Brightness.dark),
+    );
   }
 }
