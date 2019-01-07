@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui/HomePage.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,11 +8,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Places"),
-        ),
-      ),
+      home: MyHomePage(title: "We Rate Dogs",),
+      title: "MyDogs",
+      theme: ThemeData(brightness: Brightness.dark),
     );
   }
 }
+
