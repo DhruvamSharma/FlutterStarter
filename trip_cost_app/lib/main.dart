@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
+Holder _holder = Holder();
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -20,24 +22,26 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: FuelPage(title: 'Trip Cost Calculator'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class FuelPage extends StatefulWidget {
   final String title;
-  MyHomePage({this.title});
+  FuelPage({this.title});
   @override
-  State<StatefulWidget> createState() => _MyHomePageState();
+  State<StatefulWidget> createState() => _FuelPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  String name = "";
-  List<String> currencies = ['Dollars', 'Euro', 'Yens'];
-  String currency = 'Dollars';
+class _FuelPageState extends State<FuelPage> {
+  String value = "";
+  TextEditingController distanceFieldController = TextEditingController();
+  TextEditingController mileageFieldController = TextEditingController();
+  TextEditingController priceFieldController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    print("in home page state");
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -45,42 +49,148 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         margin: EdgeInsets.all(15),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                hintText: "write a number"
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: distanceFieldController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    hintText: "eg. 125",
+                    labelText: 'Distance',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0)
+                    )
+                  ),
+                ),
               ),
-              onChanged: (value) {
-                setState(() {
-                  name = value;
-                });
-              },
-            ),
-            DropdownButton<String>(
-              items: currencies.map((String f) {
-                return DropdownMenuItem<String> (
-                  value: f,
-                  child: Text(f),
-                );
-              }).toList(),
-              value: currency,
-              onChanged: (String value) {
-                onDropDownValueSelected(value);
-              },
-            ),
-            Text(name)
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: mileageFieldController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                      hintText: "eg. 12.4",
+                      labelText: 'Distance per Unit',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0)
+                      )
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: TextField(
+                        controller: priceFieldController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            hintText: "eg. 89",
+                            labelText: 'Price',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0)
+                            )
+                        ),
+                      ),
+                    ),
+                    Container(width: 45,),
+                    Expanded(child: _DropDownListWidget()),
+                  ],
+                ),
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      child: Text("Calculate"),
+                        onPressed: () {
+                      setState(() {
+                        this.value = calculate();
+                      });
+                    }),
+                  ),
+                  Expanded(
+                    child: OutlineButton(
+                      child: Text("Reset"),
+                        onPressed: () {
+                          setState(() {
+                            distanceFieldController.clear();
+                            mileageFieldController.clear();
+                            priceFieldController.clear();
+                            this.value = "0 " + _holder.value;
+                          });
+                        }),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(this.value,
+                textScaleFactor: 4,
+                style: TextStyle(
+                  fontFamily: "NotoSans",
+                ),),
+              )
+            ],
+          ),
         )
       )
     );
   }
 
-  void onDropDownValueSelected(String value) {
+  String calculate() {
+    double price = double.parse(priceFieldController.text);
+    double mileage = double.parse(mileageFieldController.text);
+    double distance = double.parse(distanceFieldController.text);
+    double _totalCost = distance/(price*mileage);
+    return _totalCost.toStringAsFixed(2) + " " + _holder.value;
+  }
+}
+
+class _DropDownListWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _DropDownListWidgetState();
+}
+
+class _DropDownListWidgetState extends State<_DropDownListWidget> {
+  List<String> currencies = ['Dollars', 'Euro', 'Yens'];
+  String value = "Dollars";
+  void onDropDownValueSelected(String valuee) {
     setState(() {
-      currency = value;
+      _holder.value = valuee;
+      value = valuee;
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print("in dropdown state");
+    return DropdownButton<String> (
+      items: currencies.map((String value) {
+        return DropdownMenuItem<String> (
+          child: Text(value),
+          value: value,
+        );
+      }).toList(),
+      onChanged: (value) {
+        onDropDownValueSelected(value);
+      },
+      value: value
+    );
+  }
+}
+
+class Holder {
+  String _value = "Dollars";
+
+  String get value => _value;
+
+  set value(String value) {
+    _value = value;
   }
 
 }
