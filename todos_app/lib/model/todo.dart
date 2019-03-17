@@ -61,7 +61,7 @@ class Todo {
     this._id = o['id'];
     this._priority = o['priority'];
     this._description = o['description'];
-    this._title = o['description'];
+    this._title = o['title'];
     this._date = o['date'];
   }
 }
