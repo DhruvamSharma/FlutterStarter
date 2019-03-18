@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todos_app/model/todo.dart';
+import 'package:todos_app/screens/tododetail.dart';
 import 'package:todos_app/screens/todolist.dart';
 
 void main() => runApp(MyApp());
@@ -44,10 +46,17 @@ class MyHomePageState extends State<MyHomePage> {
       ),
       body: TodoList(),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: null,
+          onPressed: () {
+            navigateToDetailPage(Todo('','',3,));
+          },
           icon: Icon(Icons.add),
           label: Text('Add a Todo'),
       ),
     );
+  }
+  void navigateToDetailPage(Todo todo) async {
+    var bool = await Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext context) => TodoDetail(todo),
+        ));
   }
 }

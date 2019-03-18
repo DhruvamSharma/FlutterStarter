@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todos_app/model/todo.dart';
+import 'package:todos_app/screens/tododetail.dart';
 import 'package:todos_app/util/dbhelper.dart';
 
 class TodoList extends StatefulWidget {
@@ -34,6 +35,7 @@ class TodoListState extends State<TodoList> {
               title: Text(_todos[position].title),
               subtitle: Text(_todos[position].date),
               onTap: () {
+                navigateToDetailPage(_todos[position]);
                 debugPrint(_todos[position].title);
               },
             ),
@@ -56,7 +58,7 @@ class TodoListState extends State<TodoList> {
   }
 
   void fetchData() {
-    DBHelper _helper = DBHelper();
+    _helper = DBHelper();
     var futureDB = _helper.initializeDB();
     futureDB.then((db) {
       var futureTodos = _helper.getTodos();
@@ -71,5 +73,14 @@ class TodoListState extends State<TodoList> {
         });
       });
     });
+  }
+
+  void navigateToDetailPage(Todo todo) async {
+    var bool = await Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext context) => TodoDetail(todo),
+    ));
+    if(bool == true) {
+      fetchData();
+    }
   }
 }
