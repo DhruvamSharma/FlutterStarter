@@ -115,8 +115,6 @@ class TodoDetailState extends State<TodoDetail> {
     );
   }
 
-  int get
-
   void select(String data) {
     switch (data) {
       case saveMenu: {
