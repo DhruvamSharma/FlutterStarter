@@ -96,7 +96,6 @@ class TodoDetailState extends State<TodoDetail> {
                   onChanged: (String data) {
                     setState(() {
                       priority = data;
-                      todo.priority =
                     });
                   },
                   items: _priorities.map((String item) {
