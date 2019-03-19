@@ -19,23 +19,25 @@ class TodoDetail extends StatefulWidget {
   final Todo todo;
   TodoDetail(this.todo);
   @override
-  State<StatefulWidget> createState() => TodoDetailState();
+  State<StatefulWidget> createState() => TodoDetailState(todo);
 }
 
 class TodoDetailState extends State<TodoDetail> {
   Todo todo;
   String priority = 'low';
   final _priorities = ['low','medium','high'];
-  TextEditingController titleController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
+  var titleController = TextEditingController();
+  var descriptionController = TextEditingController();
+  TodoDetailState(this.todo);
   @override
   Widget build(BuildContext context) {
-    titleController.text = widget.todo.title;
-    descriptionController.text = widget.todo.description;
+    titleController.text = todo.title;
+    descriptionController.text = todo.description;
     TextStyle textStyle = Theme.of(context).textTheme.title;
     return Scaffold(
       appBar: AppBar(
-        title: Text(titleController.text),
+        automaticallyImplyLeading: false,
+        title: Text(todo.title),
         elevation: 0,
         centerTitle: true,
         actions: <Widget>[
@@ -45,7 +47,7 @@ class TodoDetailState extends State<TodoDetail> {
               return choices.map((data) {
                 return PopupMenuItem(
                     child: Text(data),
-                  value: data,
+                    value: data,
                 );
               }).toList();
             },
@@ -61,6 +63,9 @@ class TodoDetailState extends State<TodoDetail> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   style: textStyle,
+                  onChanged: (data) {
+                    todo.title = titleController.text;
+                  },
                   controller: titleController,
                   decoration: InputDecoration(
                     labelText: 'Title',
@@ -75,6 +80,9 @@ class TodoDetailState extends State<TodoDetail> {
                 child: TextField(
                   controller: descriptionController,
                   style: textStyle,
+                  onChanged: (data) {
+                    todo.description = descriptionController.text;
+                  },
                   decoration: InputDecoration(
                       labelText: 'Description',
                       border: OutlineInputBorder(
@@ -88,6 +96,7 @@ class TodoDetailState extends State<TodoDetail> {
                   onChanged: (String data) {
                     setState(() {
                       priority = data;
+                      todo.priority =
                     });
                   },
                   items: _priorities.map((String item) {
@@ -106,7 +115,9 @@ class TodoDetailState extends State<TodoDetail> {
     );
   }
 
-  void select(String data) async {
+  int get
+
+  void select(String data) {
     switch (data) {
       case saveMenu: {
       save();
@@ -115,7 +126,6 @@ class TodoDetailState extends State<TodoDetail> {
       case deleteMenu: {
       if(todo.id == null)
       return;
-
       delete();
       break;
       }
@@ -139,9 +149,10 @@ class TodoDetailState extends State<TodoDetail> {
   }
 
   void delete() async{
+    Navigator.pop(context, true);
    var result = await _helper.deleteTodo(todo.id);
    if(result != 0) {
-     Navigator.pop(context, true);
+
    }
   }
 }

@@ -4,6 +4,8 @@ import 'package:todos_app/screens/tododetail.dart';
 import 'package:todos_app/util/dbhelper.dart';
 
 class TodoList extends StatefulWidget {
+  final String title;
+  TodoList(this.title);
   @override
   State<StatefulWidget> createState() => TodoListState();
 }
@@ -18,29 +20,43 @@ class TodoListState extends State<TodoList> {
     if(_todos == null) {
       fetchData();
     }
-    return ListView.builder(
-      itemCount: count,
-        itemBuilder: (BuildContext context, int position) {
-          return Card(
-            elevation: 2.0,
-            color: Colors.white,
-            child: ListTile(
-              leading: CircleAvatar(
-                child: Text(_todos[position].priority.toString(),
-                style: TextStyle(
-                  color: Colors.black
-                ),),
-                backgroundColor: getColor(_todos[position].priority),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        elevation: 0,
+        centerTitle: true,
+      ),
+      body: ListView.builder(
+          itemCount: count,
+          itemBuilder: (BuildContext context, int position) {
+            return Card(
+              elevation: 2.0,
+              color: Colors.white,
+              child: ListTile(
+                leading: CircleAvatar(
+                  child: Text(_todos[position].priority.toString(),
+                    style: TextStyle(
+                        color: Colors.black
+                    ),),
+                  backgroundColor: getColor(_todos[position].priority),
+                ),
+                title: Text(_todos[position].title),
+                subtitle: Text(_todos[position].date),
+                onTap: () {
+                  navigateToDetailPage(_todos[position]);
+                  debugPrint(_todos[position].title);
+                },
               ),
-              title: Text(_todos[position].title),
-              subtitle: Text(_todos[position].date),
-              onTap: () {
-                navigateToDetailPage(_todos[position]);
-                debugPrint(_todos[position].title);
-              },
-            ),
-          );
-        }
+            );
+          }
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          navigateToDetailPage(Todo('','',3, ''));
+        },
+        icon: Icon(Icons.add),
+        label: Text('Add a Todo'),
+      ),
     );
   }
 

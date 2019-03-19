@@ -45,7 +45,7 @@ class DBHelper {
 
   Future<int> insertTodo(Todo todo) async{
     Database db = await this.db;
-    var result = db.insert(tableName, todo.toMap());
+    var result = await db.insert(tableName, todo.toMap());
     return result;
   }
 
@@ -63,7 +63,7 @@ class DBHelper {
 
   Future<int> updateTodo(Todo todo) async {
     Database db = await this.db;
-    var result = db.update(tableName, todo.toMap(),
+    var result = await db.update(tableName, todo.toMap(),
     where: '$colId = ?', whereArgs: [todo.id]);
 
     return result;
@@ -71,7 +71,7 @@ class DBHelper {
 
   Future<int> deleteTodo(int id) async {
     Database db = await this.db;
-    var result = db.delete(tableName, where: '$colId = ?', whereArgs: [id]);
+    var result = await db.delete(tableName, where: '$colId = ?', whereArgs: [id]);
 
     return result;
   }

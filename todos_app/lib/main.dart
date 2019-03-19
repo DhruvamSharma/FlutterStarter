@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todos_app/model/todo.dart';
-import 'package:todos_app/screens/tododetail.dart';
 import 'package:todos_app/screens/todolist.dart';
 
 void main() => runApp(MyApp());
@@ -38,25 +36,6 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        elevation: 0,
-        centerTitle: true,
-      ),
-      body: TodoList(),
-      floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            navigateToDetailPage(Todo('','',3,));
-          },
-          icon: Icon(Icons.add),
-          label: Text('Add a Todo'),
-      ),
-    );
-  }
-  void navigateToDetailPage(Todo todo) async {
-    var bool = await Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext context) => TodoDetail(todo),
-        ));
+    return TodoList(widget.title);
   }
 }
