@@ -25,7 +25,8 @@ class TodoDetail extends StatefulWidget {
 class TodoDetailState extends State<TodoDetail> {
   Todo todo;
   String priority = 'low';
-  final _priorities = ['low','medium','high'];
+  //TODO only static variables can be constant
+  List<String> _priorities = const <String> ['low','medium','high'];
   var titleController = TextEditingController();
   var descriptionController = TextEditingController();
   TodoDetailState(this.todo);
@@ -96,6 +97,7 @@ class TodoDetailState extends State<TodoDetail> {
                   onChanged: (String data) {
                     setState(() {
                       priority = data;
+                      todo.priority = getPriority(data);
                     });
                   },
                   items: _priorities.map((String item) {
@@ -112,6 +114,23 @@ class TodoDetailState extends State<TodoDetail> {
         ),
       ),
     );
+  }
+
+  int getPriority(String value) {
+    switch (value) {
+      case 'low':
+        return 3;
+        break;
+      case 'medium':
+        return 2;
+        break;
+      case 'high':
+        return 1;
+        break;
+      default:
+        return 3;
+        break;
+    }
   }
 
   void select(String data) {

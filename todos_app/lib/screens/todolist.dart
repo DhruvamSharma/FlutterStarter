@@ -50,12 +50,15 @@ class TodoListState extends State<TodoList> {
             );
           }
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          navigateToDetailPage(Todo('','',3, ''));
-        },
-        icon: Icon(Icons.add),
-        label: Text('Add a Todo'),
+      floatingActionButton: RotatedBox(
+        quarterTurns: 1,
+        child: FloatingActionButton.extended(
+          onPressed: () {
+            navigateToDetailPage(Todo('','',3, ''));
+          },
+          icon: Icon(Icons.add),
+          label: Text('Add a Todo'),
+        ),
       ),
     );
   }
